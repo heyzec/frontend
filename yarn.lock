@@ -7230,12 +7230,7 @@ github-from-package@0.0.0:
   resolved "https://registry.yarnpkg.com/github-from-package/-/github-from-package-0.0.0.tgz#97fb5d96bfde8973313f20e8288ef9a167fa64ce"
   integrity sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==
 
-gl-wiretap@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/gl-wiretap/-/gl-wiretap-0.6.2.tgz#e4aa19622831088fbaa7e5a18d01768f7a3fb07c"
-  integrity sha512-fxy1XGiPkfzK+T3XKDbY7yaqMBmozCGvAFyTwaZA3imeZH83w7Hr3r3bYlMRWIyzMI/lDUvUMM/92LE2OwqFyQ==
-
-gl@^5.0.3, gl@^8.0.2:
+gl@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/gl/-/gl-8.0.2.tgz#77eec0aa315cbb5c08923fea1447c4b988530e94"
   integrity sha512-bAQg+aXnz/uBDwWEld/6Fifj0KBN3H3XElQgoz/F9hmBhIYKRohZP/41y43tHBQ6+LqVt1JKM1vts7t+Nzc6oA==
@@ -7356,22 +7351,6 @@ gopd@^1.0.1:
   integrity sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==
   dependencies:
     get-intrinsic "^1.1.3"
-
-gpu-mock.js@^1.3.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/gpu-mock.js/-/gpu-mock.js-1.3.1.tgz#f7deaa09da3f672762eda944ecf948fd2c4b1490"
-  integrity sha512-+lbp8rQ0p1nTa6Gk6HoLiw4yM6JTpql82U+nCF3sZbX4FJWP9PzzF1018dW8K+pbmqRmhLHbn6Bjc6i6tgUpbA==
-
-gpu.js@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/gpu.js/-/gpu.js-2.16.0.tgz#35531f8ee79292b71a454455e7bf0aaf6693182a"
-  integrity sha512-ZKmWdRXi3F/9nim5ew2IPXZaMlSyqtMtVC8Itobjl+qYUgUqcBHxu8WKqK0AqIyjBVBl7A5ORo4Db2hzgrPd4A==
-  dependencies:
-    acorn "^7.1.1"
-    gl "^5.0.3"
-    gl-wiretap "^0.6.2"
-    gpu-mock.js "^1.3.0"
-    webgpu "^0.1.16"
 
 graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11, graceful-fs@^4.2.4, graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   version "4.2.11"
@@ -8925,10 +8904,10 @@ js-sdsl@4.3.0:
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.3.0.tgz#aeefe32a451f7af88425b11fdb5f58c90ae1d711"
   integrity sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==
 
-js-slang@^1.0.76:
-  version "1.0.76"
-  resolved "https://registry.yarnpkg.com/js-slang/-/js-slang-1.0.76.tgz#5f2827b85b80880c5777913dbbac3f6b03f233e2"
-  integrity sha512-Ue/2aXJ7zwRCObW//aouHeqJMaP9110/5bcTBJ+jWF/EWnn3IXzh93CzR5bxsuYwGp6EYqLDSkSsxlmnZuDFFw==
+"js-slang@npm:@heyzec/js-slang@^1.0.74":
+  version "1.0.74"
+  resolved "https://npm.pkg.github.com/download/@heyzec/js-slang/1.0.74/0a99fa682c281a5990951d229e8d027651b5913b#0a99fa682c281a5990951d229e8d027651b5913b"
+  integrity sha512-+4rbCb45/P3sM03SrmruBq3OYggMNoMDB6rWwY2mF1ksmOCgikv1F87fCeNuq8IoR1Ke+wj8dQKnYt48E80MhQ==
   dependencies:
     "@babel/parser" "^7.19.4"
     "@commander-js/extra-typings" "^12.0.1"
@@ -8941,7 +8920,6 @@ js-slang@^1.0.76:
     acorn-walk "^8.0.0"
     astring "^1.4.3"
     commander "^12.0.0"
-    gpu.js "^2.16.0"
     js-base64 "^3.7.5"
     lodash "^4.17.21"
     source-map "0.7.3"
@@ -13990,11 +13968,6 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
-
-webgpu@^0.1.16:
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/webgpu/-/webgpu-0.1.16.tgz#dec416373e308181b28864b58c8a914461d7ceee"
-  integrity sha512-KAXn/f8lnL8o4B718zzdfi1l0nEWQpuoWlC1L5WM/svAbeHjShCEI0l5ZcZBEEUm9FF3ZTgRjWk8iwbJfnGKTA==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
