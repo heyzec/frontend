@@ -5,7 +5,6 @@ import { store } from 'src/pages/createStore';
 
 import { Tokens } from '../application/types/SessionTypes';
 import { postRefresh } from '../sagas/RequestsSaga';
-import { MockResponse } from './__tests__/RequestHelper';
 import { actions } from './ActionsHelper';
 import Constants from './Constants';
 import { dismiss, showWarningMessage } from './notifications/NotificationsHelper';
@@ -180,5 +179,5 @@ export const promptReloginMessage = (
   </div>
 );
 export const networkErrorMessage = 'Error while communicating with backend; check your network?';
-export const getResponseErrorMessage = (resp: Response | MockResponse) =>
+export const getResponseErrorMessage = (resp: Response) =>
   `Error while communicating with backend: ${resp.status} ${resp.statusText}`;
