@@ -5,7 +5,6 @@ import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { Ace, Range } from 'ace-builds';
 import { FSModule } from 'browserfs/dist/node/core/FS';
 import classNames from 'classnames';
-import { Chapter, Variant } from 'js-slang/dist/types';
 import { isEqual } from 'lodash';
 import { decompressFromEncodedURIComponent } from 'lz-string';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -97,6 +96,8 @@ import {
   makeSubstVisualizerTabFrom,
   mobileOnlyTabIds
 } from './PlaygroundTabs';
+import { Variant, Chapter } from "js-slang/dist/types";
+import { createContext, runInContext, type IOptions } from "js-slang";
 
 export type PlaygroundProps = {
   isSicpEditor?: boolean;
@@ -1028,6 +1029,42 @@ const Playground: React.FC<PlaygroundProps> = props => {
       workspaceLocation: workspaceLocation
     }
   };
+
+  const [steps, setSteps] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function test() {
+      const message = `1+1;`;
+
+
+      const chapter = Chapter.SOURCE_1;
+      const runnercontext = createContext(chapter, Variant.NON_DET);
+      const options: Partial<IOptions> = {
+        executionMethod: "interpreter",
+        useSubst: true,
+      };
+      console.log(`the message is ${message}`);
+      const output = await runInContext(message, runnercontext, options);
+      console.log(output);
+      console.log(runnercontext);
+
+      if (output.status !== "finished") {
+        return;
+      }
+
+      setSteps(output.value);
+    }
+    test();
+
+  }, []);
+
+  return (
+    <>
+      <div style={{ backgroundColor: "red" }}>
+        {steps.length > 0 ? <div>{steps.map(x => x.code).toString()}</div> : null}
+      </div>
+    </>
+  );
 
   return isMobileBreakpoint ? (
     <div className={classNames('Playground', Classes.DARK, isGreen && 'GreenScreen')}>
