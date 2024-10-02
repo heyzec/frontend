@@ -115,6 +115,10 @@ export function* evalCodeSaga(
   );
 
   function call_variant(variant: Variant) {
+    console.log({
+      location: "evalCode:call_variant",
+      require: require
+    });
     if (variant === Variant.NON_DET) {
       return entrypointCode.trim() === TRY_AGAIN
         ? call(resume, lastNonDetResult)
@@ -268,6 +272,10 @@ export function* evalCodeSaga(
       ? DisplayBufferService.attachConsole(workspaceLocation)
       : () => {};
 
+  console.log({
+    location: "evalCode:evalCodeSaga",
+    require: require
+  });
   const { result, interrupted, paused } = yield race({
     result:
       actionType === InterpreterActions.debuggerResume.type

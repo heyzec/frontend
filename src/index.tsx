@@ -15,6 +15,29 @@ import { store } from 'src/pages/createStore';
 import ApplicationWrapper from './commons/application/ApplicationWrapper';
 import { createInBrowserFileSystem } from './pages/fileSystem/createInBrowserFileSystem';
 
+// setTimeout(() => {
+//   const temp = document.getElementsByClassName('react-ace');
+//   if (temp.length === 0) return;
+//   // @ts-ignore
+//   const editor = ace.edit(temp[0]);
+//   editor.setValue("haha");
+// }, 3000);
+
+// setTimeout(() => {
+//   const editor = document.getElementsByClassName('left-parent')[0]!;
+//   editor.remove();
+// }, 5000);
+
+window.addEventListener('message', (event) => {
+  console.log("sickkkkkkkkkkkkk");
+  console.log(event.data);
+  const temp = document.getElementsByClassName('react-ace');
+  if (temp.length === 0) return;
+  // @ts-ignore
+  const editor = ace.edit(temp[0]);
+  editor.setValue(event.data);
+});
+
 if (Constants.sentryDsn) {
   Sentry.init({
     dsn: Constants.sentryDsn,
