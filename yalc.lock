@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "js-slang": {
+      "signature": "d47d0dd2f7298a853cdff8f0143c3ed5",
+      "file": true,
+      "replaced": "link:.yalc/js-slang"
+    }
+  }
+}
