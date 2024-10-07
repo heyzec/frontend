@@ -9,6 +9,11 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    libs = with pkgs; [
+      libuuid
+      xorg.libX11
+      xorg.libXext
+    ];
   in
   {
     devShells.${system}.default = pkgs.mkShell {
@@ -27,6 +32,11 @@
 
         gcc11
       ];
+      shellHook = ''
+        # Inject the libraries
+        export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/
+        export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath libs}:$LD_LIBRARY_PATH"
+      '';
     };
   };
 }
