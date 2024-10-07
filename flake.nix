@@ -15,6 +15,17 @@
       packages = with pkgs; [
         nodejs_20
         yarn
+
+        # Additional libs needed by yarn when installing
+        pkg-config
+        xorg.libX11
+        xorg.libXi
+        libGL
+
+        python310
+        xorg.libXext
+
+        gcc11
       ];
     };
   };
