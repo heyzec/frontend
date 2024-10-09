@@ -96,7 +96,7 @@ const Workspace: React.FC<WorkspaceProps> = props => {
       minWidth: 0,
       onResize: toggleEditorDividerDisplay,
       ref: leftParentResizable,
-      defaultSize: { width: '50%', height: '100%' },
+      defaultSize: { width: '0%', height: '100%' },
       as: undefined as any // re-resizable bug - wrong typedef
     } as ResizableProps;
   };
