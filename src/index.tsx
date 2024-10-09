@@ -16,6 +16,10 @@ import ApplicationWrapper from './commons/application/ApplicationWrapper';
 import { createInBrowserFileSystem } from './pages/fileSystem/createInBrowserFileSystem';
 
 window.addEventListener('message', (event) => {
+  // Only accept messages from the vscode webview
+  if (!event.origin.startsWith('vscode-webview://')) {
+    return;
+  }
   const elements = document.getElementsByClassName('react-ace');
   if (elements.length === 0) {
     return;
