@@ -12,7 +12,7 @@ import { Prompt } from '../ReactRouterPrompt';
 import Repl, { ReplProps } from '../repl/Repl';
 import SideBar, { SideBarTab } from '../sideBar/SideBar';
 import SideContent, { SideContentProps } from '../sideContent/SideContent';
-import { useDimensions } from '../utils/Hooks';
+import { useDimensions, useTypedSelector } from '../utils/Hooks';
 
 export type WorkspaceProps = DispatchProps & StateProps;
 
@@ -44,6 +44,7 @@ const Workspace: React.FC<WorkspaceProps> = props => {
   const [contentContainerWidth] = useDimensions(contentContainerDiv);
   const [expandedSideBarWidth, setExpandedSideBarWidth] = useState(200);
   const [isSideBarExpanded, setIsSideBarExpanded] = useState(true);
+  const isVsc = useTypedSelector(state => state.vsc.isVsc);
 
   const sideBarCollapsedWidth = 40;
 
@@ -96,7 +97,7 @@ const Workspace: React.FC<WorkspaceProps> = props => {
       minWidth: 0,
       onResize: toggleEditorDividerDisplay,
       ref: leftParentResizable,
-      defaultSize: { width: '0%', height: '100%' },
+      defaultSize: { width: '50%', height: '100%' },
       as: undefined as any // re-resizable bug - wrong typedef
     } as ResizableProps;
   };
@@ -222,7 +223,12 @@ const Workspace: React.FC<WorkspaceProps> = props => {
         </Resizable>
         <div className="row content-parent" ref={contentContainerDiv}>
           <div className="editor-divider" ref={editorDividerDiv} />
+          {isVsc ? (
+            <div style={{ width: '0px' }}>{createWorkspaceInput(props)}</div>
+          ) : (
           <Resizable {...editorResizableProps()}>{createWorkspaceInput(props)}</Resizable>
+          )}
+          <div style={{ width: '0px' }}>{createWorkspaceInput(props)}</div>
           <div className="right-parent" ref={setFullscreenRefs}>
             <Tooltip
               className="fullscreen-button"

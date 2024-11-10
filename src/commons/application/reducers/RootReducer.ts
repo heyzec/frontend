@@ -11,6 +11,7 @@ import { WorkspaceReducer as workspaces } from '../../workspace/WorkspaceReducer
 import { OverallState } from '../ApplicationTypes';
 import { RouterReducer as router } from './CommonsReducer';
 import { SessionsReducer as session } from './SessionsReducer';
+import { VscReducer as vsc } from './VscReducer';
 
 const rootReducer: Reducer<OverallState, SourceActionType> = combineReducers({
   router,
@@ -21,7 +22,8 @@ const rootReducer: Reducer<OverallState, SourceActionType> = combineReducers({
   stories,
   workspaces,
   fileSystem,
-  sideContent
+  sideContent,
+  vsc
 });
 
 export default rootReducer;

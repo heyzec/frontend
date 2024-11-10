@@ -11,6 +11,7 @@ import {
   defaultSession,
   defaultSideContentManager,
   defaultStories,
+  defaultVsc,
   defaultWorkspaceManager,
   OverallState
 } from '../application/ApplicationTypes';
@@ -30,7 +31,8 @@ export function mockInitialStore(
     session: defaultSession,
     stories: defaultStories,
     fileSystem: defaultFileSystem,
-    sideContent: defaultSideContentManager
+    sideContent: defaultSideContentManager,
+    vsc: defaultVsc
   };
 
   const lodashMergeCustomizer = (objValue: any, srcValue: any) => {

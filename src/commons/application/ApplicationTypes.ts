@@ -20,6 +20,7 @@ import {
 import { RouterState } from './types/CommonsTypes';
 import { ExternalLibraryName } from './types/ExternalTypes';
 import { SessionState } from './types/SessionTypes';
+import { VscState } from './types/VscTypes';
 
 export type OverallState = {
   readonly router: RouterState;
@@ -31,6 +32,7 @@ export type OverallState = {
   readonly dashboard: DashboardState;
   readonly fileSystem: FileSystemState;
   readonly sideContent: SideContentManagerState;
+  readonly vsc: VscState;
 };
 
 export type Story = {
@@ -600,6 +602,10 @@ export const defaultSideContentManager: SideContentManagerState = {
   stories: {}
 };
 
+export const defaultVsc: VscState = {
+  isVsc: false,
+}
+
 export const defaultState: OverallState = {
   router: defaultRouter,
   achievement: defaultAchievement,
@@ -609,5 +615,6 @@ export const defaultState: OverallState = {
   stories: defaultStories,
   workspaces: defaultWorkspaceManager,
   fileSystem: defaultFileSystem,
-  sideContent: defaultSideContentManager
+  sideContent: defaultSideContentManager,
+  vsc: defaultVsc
 };

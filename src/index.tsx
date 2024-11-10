@@ -15,20 +15,6 @@ import { store } from 'src/pages/createStore';
 import ApplicationWrapper from './commons/application/ApplicationWrapper';
 import { createInBrowserFileSystem } from './pages/fileSystem/createInBrowserFileSystem';
 
-window.addEventListener('message', (event) => {
-  // Only accept messages from the vscode webview
-  if (!event.origin.startsWith('vscode-webview://')) {
-    return;
-  }
-  const elements = document.getElementsByClassName('react-ace');
-  if (elements.length === 0) {
-    return;
-  }
-  // @ts-expect-error: ace is not available at compile time
-  const editor = ace.edit(elements[0]);
-  editor.setValue(event.data);
-});
-
 if (Constants.sentryDsn) {
   Sentry.init({
     dsn: Constants.sentryDsn,

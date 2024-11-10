@@ -76,6 +76,7 @@ import Workspace, { WorkspaceProps } from '../workspace/Workspace';
 import WorkspaceActions from '../workspace/WorkspaceActions';
 import { WorkspaceLocation, WorkspaceState } from '../workspace/WorkspaceTypes';
 import AssessmentWorkspaceGradingResult from './AssessmentWorkspaceGradingResult';
+import Messages, { sendToWebview } from 'src/features/vsc/messages';
 
 export type AssessmentWorkspaceProps = {
   assessmentId: number;
@@ -184,11 +185,11 @@ const AssessmentWorkspace: React.FC<AssessmentWorkspaceProps> = props => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    // TODO: Hardcoded to make use of the first editor tab. Refactoring is needed for this workspace to enable Folder mode.
-    handleEditorValueChange(0, '');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   // TODO: Hardcoded to make use of the first editor tab. Refactoring is needed for this workspace to enable Folder mode.
+  //   handleEditorValueChange(0, '');
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   useEffect(() => {
     handleTeamOverviewFetch(props.assessmentId);
@@ -219,27 +220,27 @@ const AssessmentWorkspace: React.FC<AssessmentWorkspaceProps> = props => {
     if (!assessment) {
       return;
     }
-    // ------------- PLEASE NOTE, EVERYTHING BELOW THIS SEEMS TO BE UNUSED -------------
-    // checkWorkspaceReset does exactly the same thing.
-    let questionId = props.questionId;
-    if (props.questionId >= assessment.questions.length) {
-      questionId = assessment.questions.length - 1;
-    }
+    // // ------------- PLEASE NOTE, EVERYTHING BELOW THIS SEEMS TO BE UNUSED -------------
+    // // checkWorkspaceReset does exactly the same thing.
+    // let questionId = props.questionId;
+    // if (props.questionId >= assessment.questions.length) {
+    //   questionId = assessment.questions.length - 1;
+    // }
 
-    const question = assessment.questions[questionId];
+    // const question = assessment.questions[questionId];
 
-    let answer = '';
-    if (question.type === QuestionTypes.programming) {
-      if (question.answer) {
-        answer = (question as IProgrammingQuestion).answer as string;
-      } else {
-        answer = (question as IProgrammingQuestion).solutionTemplate;
-      }
-    }
+    // let answer = '';
+    // if (question.type === QuestionTypes.programming) {
+    //   if (question.answer) {
+    //     answer = (question as IProgrammingQuestion).answer as string;
+    //   } else {
+    //     answer = (question as IProgrammingQuestion).solutionTemplate;
+    //   }
+    // }
 
-    // TODO: Hardcoded to make use of the first editor tab. Refactoring is needed for this workspace to enable Folder mode.
-    handleEditorValueChange(0, answer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // // TODO: Hardcoded to make use of the first editor tab. Refactoring is needed for this workspace to enable Folder mode.
+    // handleEditorValueChange(0, answer);
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -414,9 +415,12 @@ const AssessmentWorkspace: React.FC<AssessmentWorkspaceProps> = props => {
     );
     handleClearContext(question.library, true);
     handleUpdateHasUnsavedChanges(false);
+    sendToWebview(Messages.NewEditor(`assessment${assessment.id}`, props.questionId, ''));
     if (options.editorValue) {
       // TODO: Hardcoded to make use of the first editor tab. Refactoring is needed for this workspace to enable Folder mode.
       handleEditorValueChange(0, options.editorValue);
+    } else {
+      handleEditorValueChange(0, '');
     }
   };
 

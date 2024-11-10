@@ -3,6 +3,7 @@ import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import WorkspaceActions from '../WorkspaceActions';
 import { getWorkspaceLocation } from '../WorkspaceReducer';
 import { EditorTabState, WorkspaceManagerState } from '../WorkspaceTypes';
+import Messages, { sendToWebview } from 'src/features/vsc/messages';
 
 export const handleEditorActions = (builder: ActionReducerMapBuilder<WorkspaceManagerState>) => {
   builder
@@ -52,6 +53,9 @@ export const handleEditorActions = (builder: ActionReducerMapBuilder<WorkspaceMa
       }
 
       state[workspaceLocation].editorTabs[editorTabIndex].value = newEditorValue;
+      if (!action.payload.isFromVsc) {
+        sendToWebview(Messages.Text(newEditorValue));
+      }
     })
     .addCase(WorkspaceActions.setEditorBreakpoint, (state, action) => {
       const workspaceLocation = getWorkspaceLocation(action);
